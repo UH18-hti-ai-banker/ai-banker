@@ -3,13 +3,12 @@ library(shiny)
 op_api_token <- Sys.getenv("OP_API_TOKEN")
 
 # Define UI for app that draws a histogram ----
-ui <- htmlTemplate("template.html",
-  slider = sliderInput(inputId = "bins",
-                       label = "Number of bins:",
-                       min = 1,
-                       max = 50,
-                       value = 30),
-  plotpart = plotOutput(outputId = "distPlot")
+ui <- htmlTemplate("layout/application.html",
+  slider = htmlTemplate("layout/slider.html",
+                        id = "bins",
+                        label = "Number of bins:"),
+  plotpart = htmlTemplate("layout/plotpart.html",
+                          id = "distPlot")
 )
 
 # Define server logic required to draw a histogram ----
