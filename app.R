@@ -2,7 +2,8 @@ library(shiny)
 
 source("R/opapi.R")
 
-funds <- opapi.get("funds")
+api <- OPAPI()
+funds <- getFunds(api)
 
 # Define UI for app that draws a histogram ----
 ui <- htmlTemplate("layout/application.html",
@@ -10,7 +11,8 @@ ui <- htmlTemplate("layout/application.html",
                         id = "bins",
                         label = "Number of bins:"),
   plotpart = htmlTemplate("layout/plotpart.html",
-                          id = "distPlot")
+                          id = "distPlot"),
+  funds = dataTableOutput("funds")
 )
 
 # Define server logic required to draw a histogram ----
@@ -34,6 +36,7 @@ server <- function(input, output) {
          main = "Histogram of waiting times")
     
   })
+  output$funds <- renderDataTable(funds)
   
 }
 
