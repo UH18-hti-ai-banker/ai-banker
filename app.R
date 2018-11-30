@@ -1,6 +1,8 @@
 library(shiny)
 
-op_api_token <- Sys.getenv("OP_API_TOKEN")
+source("R/opapi.R")
+
+funds <- opapi.get("funds")
 
 # Define UI for app that draws a histogram ----
 ui <- htmlTemplate("layout/application.html",
