@@ -1,5 +1,7 @@
 library(shiny)
 
+op_api_token <- Sys.getenv("OP_API_TOKEN")
+
 # Define UI for app that draws a histogram ----
 ui <- fluidPage(
   
