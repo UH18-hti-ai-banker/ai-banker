@@ -14,9 +14,7 @@ To verify working API details, check variable in R console:
 
 ## Install requirements
 
-In R console:
-
-    > install.packages("shiny")
+Packrat will handle the dependencies.
     
 ## What to put where
 
