@@ -54,8 +54,7 @@ function(input, output, session) {
       geom_line(aes(as.Date(Date), Keep), col = 2) +
       xlab("Päivämäärä") +
       ylab("Tuotot (€)") +
-      ylim(c(0,200000)) +
-      legend(c("Rahasto", "Käteinen"))
+      ylim(c(0,200000))
 
  }) #, height=700
 
