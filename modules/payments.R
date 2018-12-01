@@ -1,5 +1,5 @@
 
-OPpaymentUI<-function(id) {
+paymentsUI<-function(id) {
   ns <- NS(id)
 
   data <- getTotal_assets()
@@ -24,7 +24,7 @@ OPpaymentUI<-function(id) {
   )
 }
 
-OPpayment <- function(input, output, session) {
+payments <- function(input, output, session) {
   data <- getTotal_assets()
   output$table <- renderDataTable({
     filtered <- data
