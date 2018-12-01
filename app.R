@@ -1,6 +1,7 @@
 library(shiny)
 
 source("R/opapi.R")
+source("R/OPpayment.R")
 source("modules/example.R")
 source("modules/funds.R")
 source("modules/OPpayment.R")
@@ -19,7 +20,7 @@ ui <- htmlTemplate("layout/application.html",
 server <- function(input, output, session) {
 
   output$example <- callModule(exampleplot, "example")
-
+  output$oppayment <- callModule(OPpayment, "oppayment", Total_assets)
   funds <- getFunds(api)
   output$funds <- callModule(fundsTable, "funds", funds)
 
