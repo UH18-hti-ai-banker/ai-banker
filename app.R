@@ -23,7 +23,7 @@ api_op_funds <- API_OP_FUNDS()
 ui <- {
   navbarPage(img(src="AIBanker_logo.jpeg", height="100%"),
              tabPanel("Costs", costPlotUI("costs")),
-             tabPanel("Payments", OPpaymentUI("oppayment", Total_assets)),
+             tabPanel("Payments", OPpaymentUI("oppayment")),
              tabPanel("Funds", fundsTableUI("funds")),
              tabPanel("Questions", questionsUI("questions")),
              windowTitle = "AI-Banker")
@@ -33,7 +33,7 @@ ui <- {
 server <- function(input, output, session) {
 
   output$costs <- callModule(costPlot, "costs")
-  output$oppayment <- callModule(OPpayment, "oppayment", Total_assets)
+  output$oppayment <- callModule(OPpayment, "oppayment")
   output$funds <- callModule(fundsTable, "funds", api_op_funds)
   callModule(questions, "questions")
 
