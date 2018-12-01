@@ -5,6 +5,7 @@ source("R/OPpayment.R")
 source("modules/costplot.R")
 source("modules/funds.R")
 source("modules/OPpayment.R")
+source("modules/questions.R")
 
 # Initialize API
 api <- OPAPI()
