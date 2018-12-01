@@ -50,10 +50,9 @@ bp
 
 
 # Cost line plotting
-
 Costs <- Total_assets[which(Total_assets$payment == "Cost"),]
 
-ggplot(Costs, aes(x = Date, y = sum)) +
+CostsPlot <- ggplot(Costs, aes(x = Date, y = sum)) +
   geom_line(aes(color = payment), size = 1) +
   scale_color_manual(values = c("red")) +
   theme_minimal()
@@ -67,4 +66,6 @@ savings <- sum(as.numeric(a$Value))-sum(as.numeric(l$Value))
 
 Wealth[nrow(Wealth) + 1,] = list("Savings",savings,"Savings",0)
 
-ggplot(Wealth , aes(x=Type,y=Value, fill=Name)) +  geom_bar(stat = "identity")
+WealthPlot <- ggplot(Wealth , aes(x=Type,y=Value, fill=Name)) +
+  geom_bar(stat = "identity") +
+  theme_minimal()
