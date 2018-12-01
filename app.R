@@ -12,7 +12,7 @@ api <- OPAPI()
 # Define UI for app
 ui <- htmlTemplate("layout/application.html",
   plotexample = exampleplotUI("example"),
-  oppayment = OPpaymentUI("oppayment"),
+  oppayment = OPpaymentUI("oppayment", Total_assets),
   funds = fundsTableUI("funds")
 )
 

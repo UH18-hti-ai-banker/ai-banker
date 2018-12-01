@@ -47,6 +47,3 @@ if(sum(funds$sum) > 200){
 bp<- ggplot(Total_assets, aes(x="", y=sum, fill=subject))+
   geom_bar(width = 1, stat = "identity")
 bp
-
-
-
