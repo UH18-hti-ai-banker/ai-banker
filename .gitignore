@@ -27,3 +27,5 @@ rsconnect/
 .Rproj.user
 README.html
 .Renviron
+packrat/lib*/
+packrat/src/
