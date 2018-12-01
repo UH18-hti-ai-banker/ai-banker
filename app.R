@@ -1,5 +1,14 @@
+# Get dependencies
 library(shiny)
+library(jsonlite)
+library(plotly)
+library(readxl)
+library(plyr)
+library(ggplot2)
+library(dplyr)
+library(pdftools)
 
+# Source included libraries
 source("R/api.R")
 source("R/OPpayment.R")
 source("modules/costplot.R")

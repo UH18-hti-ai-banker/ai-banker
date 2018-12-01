@@ -15,8 +15,6 @@ fetchFunds <- function() {
 
   fundsOLD <- GET(api, "funds")
 
-  library(pdftools)
-  library(dplyr)
   loc <- fundsOLD$documents$PRICE_LIST[1]
   download.file(loc, "test.pdf")
   text <- pdf_text("test.pdf")

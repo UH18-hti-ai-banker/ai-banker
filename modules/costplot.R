@@ -1,5 +1,3 @@
-library("plotly")
-
 costPlotUI <- function(id) {
   ns <- NS(id)
   div(

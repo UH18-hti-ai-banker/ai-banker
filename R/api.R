@@ -1,5 +1,3 @@
-library(jsonlite)
-
 setClass("API", slots=list(url="character",
                              key="character",
                              token="character"))

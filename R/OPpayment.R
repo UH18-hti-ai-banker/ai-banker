@@ -1,11 +1,3 @@
-library(readxl)
-library(plyr)
-library(ggplot2)
-library(dplyr)
-
-
-
-
 OP <- read_excel("data/OPpayments.xlsx")
 Random <- read_excel("data/OPpayments.xlsx", sheet = 2)
 
