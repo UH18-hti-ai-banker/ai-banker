@@ -7,7 +7,7 @@ library(dplyr)
 
 
 OP <- read_excel("data/OPpayments.xlsx")
-Random <- read_excel("data/OPpayments.xlsx", sheet = "Random")
+Random <- read_excel("data/OPpayments.xlsx", sheet = 2)
 
 Total_assets <- rbind(OP,Random)
 
@@ -35,10 +35,9 @@ totals_table <-  Total_assets %>%
 
 ###### IF-lause
 
-funds <- Total_assets[which(Total_assets$subject == "FUND"),]
-funds$sum
+funds <- Total_assets[which(Total_assets$subject == "Rahasto"),]
 
-if(funds$sum > 200){
+if(sum(funds$sum) > 200){
   print("TOO EXPENSIVE, click here to get your funds cheaper")
 }
 
