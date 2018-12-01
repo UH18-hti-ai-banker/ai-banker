@@ -8,10 +8,9 @@ library(DT)
 
 
 OPpaymentUI<-function(id) {
-  (navbarPage("Payments",
-              tabPanel("Explore your expenditures",))
-  )
+  ns <- NS(id)
 
+  h1("My title")
 }
 
 
