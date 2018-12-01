@@ -1,44 +1,39 @@
-# The user-interface definition of the Shiny web app.
-library(shiny)
-library(BH)
-library(markdown)
-library(data.table)
-library(dplyr)
-library(DT)
 
-
-OPpaymentUI<-function(id) {
+OPpaymentUI<-function(id, data) {
   ns <- NS(id)
 
-  h1("My title")
+  div(fluidRow(column(3,
+                          selectInput(ns("bank"),
+                                      "Bank:",
+                                      c("All",
+                                        as.character(unique(data$Bank))))),
+                      column(3,
+                             selectInput(ns("payment"),
+                                         "Payment:",
+                                         c("All",
+                                           as.character(unique(data$payment))))),
+                      column(3,
+                             selectInput(ns("subject"),
+                                         "Subject:",
+                                         c("All",
+                                           as.character(unique(data$subject)))))
+                      ),
+      dataTableOutput(ns("table"))
+  )
 }
 
-
-
-
-
-# ###### testi
-# ui <- fluidPage(
-#   titlePanel("Payments"),
-#   DT::dataTableOutput("mytable"),
-#   sidebarLayout(
-#     sidebarPanel(
-#       dateRangeInput("Dateinput", "Date", start = 2017, end = 2018, min = min(Total_assets$Date),
-#                      max = max(Total_assets$Date), format = "yyyy-mm-dd", startview = "month"),
-#       radioButtons("typeInput", "Product type",
-#                    choices = c(unique(Total_assets$subject)),
-#                    selected = ),
-#       selectInput("costInput", "Expenditures",
-#                   choices = c(unique(Total_assets$payment)))
-#     ),
-#     mainPanel("the results will go here")
-#   )
-# )
-#
-# server <- function(input, output) {
-#   output$mytable = DT::renderDataTable({
-#     Total_assets})
-# }
-# shinyApp(ui = ui, server = server)
-
-
+OPpayment <- function(input, output, session, data) {
+  output$table <- renderDataTable({
+    filtered <- data
+    if (input$bank != "All") {
+      filtered <- filtered[filtered$Bank == input$bank,]
+    }
+    if (input$payment != "All") {
+      filtered <- filtered[filtered$payment == input$payment,]
+    }
+    if (input$subject != "All") {
+      filtered <- filtered[filtered$subject == input$subject,]
+    }
+    filtered
+    })
+}
