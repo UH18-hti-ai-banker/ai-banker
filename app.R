@@ -10,11 +10,13 @@ source("modules/OPpayment.R")
 api <- OPAPI()
 
 # Define UI for app
-ui <- htmlTemplate("layout/application.html",
-  costplot = costPlotUI("costs"),
-  oppayment = OPpaymentUI("oppayment", Total_assets),
-  funds = fundsTableUI("funds")
-)
+ui <- {
+  navbarPage(img(src="AIBanker_logo.jpeg", height="100%"),
+             tabPanel("Costs", costPlotUI("costs")),
+             tabPanel("Payments", OPpaymentUI("oppayment", Total_assets)),
+             tabPanel("Funds", fundsTableUI("funds")),
+             windowTitle = "AI-Banker")
+}
 
 # Define server logic
 server <- function(input, output, session) {
