@@ -14,7 +14,14 @@ To verify working API details, check variable in R console:
 
 ## Install requirements
 
-Packrat will handle the dependencies.
+Packrat will handle the dependencies. To install packrat:
+
+    > install.packages("packrat")
+    
+After that check the status and it will tell if need to restore.
+
+    > packrat::status()
+    > packrat::restore() # only if not up-to-date
     
 ## What to put where
 
@@ -35,7 +42,6 @@ Create account on the site and follow getting started section with step 1 and st
 
 To deploy app you just need to load rsconnect library and deploy it:
 
-    > library(rsconnect)
-    > rsconnect::deployApp()
+    > source("deploy.R")
     
 After that you can just run the ```rsconnect::deployApp()``` line in same session to deploy.

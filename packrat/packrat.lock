@@ -18,6 +18,12 @@ Source: CRAN
 Version: 1.1-2
 Hash: c0d56cd15034f395874c870141870c25
 
+Package: RCurl
+Source: CRAN
+Version: 1.95-4.11
+Hash: 98b1b04db217dc56baca68aa34079fdd
+Requires: bitops
+
 Package: Rcpp
 Source: CRAN
 Version: 1.0.0
@@ -43,6 +49,11 @@ Source: CRAN
 Version: 0.2.2
 Hash: 8ce499301f0dc5c7ff69f0b42e33f5c1
 Requires: Rcpp, bindr, plogr
+
+Package: bitops
+Source: CRAN
+Version: 1.0-6
+Hash: 67d0775189fd0041d95abca618c5c07e
 
 Package: cellranger
 Source: CRAN
@@ -261,6 +272,17 @@ Package: rlang
 Source: CRAN
 Version: 0.3.0.1
 Hash: 35fb7a51d5d756c56f793ed9c381fb84
+
+Package: rsconnect
+Source: CRAN
+Version: 0.8.11
+Hash: f5e506b307d063cf816823820f555de8
+Requires: RCurl, jsonlite, openssl, packrat, rstudioapi, yaml
+
+Package: rstudioapi
+Source: CRAN
+Version: 0.8
+Hash: 9ba7fe76dcaf96966c449527ca04bb78
 
 Package: scales
 Source: CRAN
