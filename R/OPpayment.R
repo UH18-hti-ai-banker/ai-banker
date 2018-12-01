@@ -24,6 +24,7 @@ Cost <- Total_assets[which(Total_assets$payment == "Cost"),]
 #count(Cost$subject)
 
 count(Total_assets, "subject")
+unique(Total_assets$subject)
 
 
 ### Count monthly payments, freqcuency and average
