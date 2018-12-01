@@ -3,6 +3,7 @@ library(shiny)
 source("R/opapi.R")
 source("modules/example.R")
 source("modules/funds.R")
+source("modules/OPpayment.R")
 
 # Initialize API
 api <- OPAPI()
@@ -10,6 +11,7 @@ api <- OPAPI()
 # Define UI for app
 ui <- htmlTemplate("layout/application.html",
   plotexample = exampleplotUI("example"),
+  oppayment = OPpaymentUI("oppayment"),
   funds = fundsTableUI("funds")
 )
 
