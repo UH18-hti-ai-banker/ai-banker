@@ -8,6 +8,7 @@ fetchFunds <- function(funds) {
   ################
 
   library(pdftools)
+  library(dplyr)
   loc <- funds$documents$PRICE_LIST[1]
   download.file(loc, "test.pdf")
   text <- pdf_text("test.pdf")
