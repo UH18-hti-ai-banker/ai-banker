@@ -194,6 +194,12 @@ Source: CRAN
 Version: 0.5.0
 Hash: 498643e765d1442ba7b1160a1df3abf9
 
+Package: pdftools
+Source: CRAN
+Version: 1.8
+Hash: 0825d13aeaa3917d6dae1e0ebedd405e
+Requires: Rcpp
+
 Package: pillar
 Source: CRAN
 Version: 1.3.0
