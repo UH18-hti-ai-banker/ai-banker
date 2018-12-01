@@ -25,8 +25,7 @@ server <- function(input, output, session) {
 
   output$costs <- callModule(costPlot, "costs")
   output$oppayment <- callModule(OPpayment, "oppayment", Total_assets)
-  funds <- getFunds(api)
-  output$funds <- callModule(fundsTable, "funds", funds)
+  output$funds <- callModule(fundsTable, "funds", api)
   callModule(questions, "questions")
 
 }

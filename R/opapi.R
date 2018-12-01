@@ -29,8 +29,3 @@ setMethod("GET", "OPAPI", function(object, endpoint = "") {
   json <- httr::content(req, as = "text")
   fromJSON(json)
 })
-
-setGeneric("getFunds", function(object) standardGeneric("getFunds"))
-setMethod("getFunds", "OPAPI", function(object) {
-  GET(object, "funds")
-})
