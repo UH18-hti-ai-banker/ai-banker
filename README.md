@@ -18,6 +18,17 @@ In R console:
 
     > install.packages("shiny")
     
+## What to put where
+
+Project follows combination of shiny and basic R library structure.
+
+    | app.R = shiny application, this is what makes app "tick"
+    |-> R = this is where most of the R code belongs
+    |-> modules = place custom shiny modules here, these are the ways to show info in shiny app
+    |-> layout = HTML-templates are located here
+    |-> www = this is exposed in web, so static pictures, css- and js-files
+    |-> data = all your data belongs to us
+
 ## Deployment
 
 This is for shinyapps.io only in mind.
