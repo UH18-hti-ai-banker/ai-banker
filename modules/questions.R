@@ -44,9 +44,16 @@ questions <- function(input, output, session) {
   observe({
     observeEvent(input$btn, {
       values <-c(input$Target,input$Period,input$Propability,input$Work,input$Monthly,input$Savings,input$Value,input$vertaus)
-      print(values)
       num_values <- as.numeric(values)
-      print(sum(num_values))
+      riskvalue <- sum(num_values)
+      message <- "undetermined"
+      if (riskvalue < 10)
+        message <- "Haluat pientä riskiä. Suosittelemme sinulle tätä rahastoa: OP-KORKOTUOTTO"
+      else if (riskvalue > 9 && riskvalue < 16)
+      message <- "Sinulla on kohtalainen riskinsietokyky. Suosittelemme sinulle tätä rahastoa: OP - MALTILLINEN"
+      else if (riskvalue > 15)
+        message <- "Pidät riskistä. Suosittelemme sinulle tätä rahastoa: OP-VENÄJÄ"
+      showModal(modalDialog(message))
     })
   })
 }
