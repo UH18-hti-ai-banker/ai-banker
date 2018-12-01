@@ -49,9 +49,7 @@ bp<- ggplot(Total_assets, aes(x="", y=sum, fill=subject))+
 bp
 
 
-library(ggplot2)
 # Cost line plotting
-View(Total_assets)
 
 Costs <- Total_assets[which(Total_assets$payment == "Cost"),]
 
@@ -59,3 +57,14 @@ ggplot(Costs, aes(x = Date, y = sum)) +
   geom_line(aes(color = payment), size = 1) +
   scale_color_manual(values = c("red")) +
   theme_minimal()
+
+
+## GGplot from Assets, liabilities and Savings
+Wealth <- read_excel("data/OPpayments.xlsx", sheet = "Varallisuus")
+a<- Wealth[which(Wealth$Type == "Asset"),]
+l<-Wealth[which(Wealth$Type == "Liability"),]
+savings <- sum(as.numeric(a$Value))-sum(as.numeric(l$Value))
+
+Wealth[nrow(Wealth) + 1,] = list("Savings",savings,"Savings",0)
+
+ggplot(Wealth , aes(x=Type,y=Value, fill=Name)) +  geom_bar(stat = "identity")
