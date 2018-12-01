@@ -2,7 +2,7 @@
 OPpaymentUI<-function(id, data) {
   ns <- NS(id)
 
-  filters <- fluidRow(column(3,
+  div(fluidRow(column(3,
                           selectInput(ns("bank"),
                                       "Bank:",
                                       c("All",
@@ -17,10 +17,9 @@ OPpaymentUI<-function(id, data) {
                                          "Subject:",
                                          c("All",
                                            as.character(unique(data$subject)))))
-                      )
-
-  htmlTemplate("layout/oppayment.html", filters = filters, table = dataTableOutput(ns("table")))
-
+                      ),
+      dataTableOutput(ns("table"))
+  )
 }
 
 OPpayment <- function(input, output, session, data) {
