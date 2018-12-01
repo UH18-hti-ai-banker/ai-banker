@@ -48,5 +48,16 @@ bp<- ggplot(Total_assets, aes(x="", y=sum, fill=subject))+
   geom_bar(width = 1, stat = "identity")
 bp
 
+library(ggplot2)
+# Cost line plotting
+View(Total_assets)
+
+Costs <- Total_assets[which(Total_assets$payment == "Cost"),]
+
+ggplot(Costs, aes(x = Date, y = sum)) +
+  geom_line(aes(color = payment), size = 1) +
+  scale_color_manual(values = c("red")) +
+  theme_minimal()
+
 
 
