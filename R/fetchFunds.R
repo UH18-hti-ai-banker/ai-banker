@@ -1,15 +1,23 @@
 
-#NOTES: Only one fund-id available
+#NOTE: To be run only once (stratup) in the app! (slow as fetches everything)
+#DEPENDS ON: opapi.R
+#EXAMPLE: taulu
 
-fetchFunds <- function(funds) {
+#Returns a table of funds, including their risk class and expected returns
+fetchFunds <- function() {
+
+  api_info <- OPAPI_info()
+  api <- OPAPI()
 
   ################
   ### Hinnasto ###
   ################
 
+  fundsOLD <- GET(api, "funds")
+
   library(pdftools)
   library(dplyr)
-  loc <- funds$documents$PRICE_LIST[1]
+  loc <- fundsOLD$documents$PRICE_LIST[1]
   download.file(loc, "test.pdf")
   text <- pdf_text("test.pdf")
   splits <- strsplit(text, "\n")
@@ -87,34 +95,34 @@ fetchFunds <- function(funds) {
   ### Rahastotaulu ###
   ####################
 
-  #namesEN <- funds$nameOfFund
-  namesFI <- c("OP-KORKOTUOTTO",
-               "OP-DELTA",
-               "OP-ROHKEA",
-               "OP-VAROVAINEN",
-               "OP-POHJOISMAAT INDEKSI",
-               "OP-EUROOPPA INDEKSI",
-               "OP-AMERIKKA INDEKSI",
-               "OP-AASIA INDEKSI",
-               "OP-MALTILLINEN",
-               "OP-MAAILMA"
-  )
+  funds <- data.frame(GET(api_info, "funds"))
+  funds$payload.name$fi <- toupper(funds$payload.name$fi)
+  funds <- data.frame(cbind(funds$payload.id, funds$payload.name$fi, funds$payload.fundType), stringsAsFactors = F)
+  colnames(funds) <- c("ID", "Rahasto", "Tyyppi")
+  temp <- left_join(hinnasto, funds, by = "Rahasto")
+  funds <- temp[-which(is.na(temp$ID)),]
+  funds$Riskiluokka <- NA
+  funds$Tuotto <- NA
 
-  temp <- funds[,c(1:2,4)]
-  colnames(temp) <- c("Isin-Koodi", "Yksikköhinta", "Aikaleima")
-  rows <- which(hinnasto$Rahasto %in% namesFI)
-  temp <- cbind(temp, hinnasto[rows,])
-  temp$Rahasto <- namesFI
-  taulu <- temp
+  for(i in 1:nrow(funds)) {
+    print(paste0(i, "/", nrow(funds), "..."))
+    id <- funds$ID[i]
+    t <- tryCatch({
+      tt <- GET(api_info, paste0("funds/",id))
+      tt <- tryCatch({
+        tt <- data.frame(tt, stringsAsFactors = F)[1,]
+        select(tt, riskClass, expectedReturnPerAnnum)
+      }, error = function(cond) {
+        tt <- matrix(as.numeric(c(tt$riskClass, tt$expectedReturnPerAnnum)), byrow = T, ncol = 2)
+        data.frame(tt, stringsAsFactors = F)
+      })
+    },error = function(cond) {
+      c(NA, NA)
+    })
+    funds[i,(ncol(funds)-1):ncol(funds)] <- t
+  }
 
-  api_info <- OPAPI_info()
-  tt <- data.frame(GET(api_info, "funds/50090"))
-  temp <- select(tt, id, name.fi, riskClass, expectedReturnPerAnnum)[1,]
-  colnames(temp)[2] <- "Rahasto"
-  temp$Rahasto <- toupper(temp$Rahasto)
-  taulu <- left_join(taulu, temp, by = "Rahasto")
-
-  taulu
+  funds
 }
 
 
