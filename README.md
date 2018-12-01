@@ -10,7 +10,7 @@ If you have RStudio open with the project, restart it.
 
 To verify working API details, check variable in R console:
 
-    > Sys.getenv("OP_API_TOKEN")
+    > Sys.getenv("OP_API_KEY")
 
 ## Install requirements
 
