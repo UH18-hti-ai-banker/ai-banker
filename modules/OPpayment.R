@@ -20,22 +20,24 @@ OPpaymentUI<-function(id) {
 ###### testi
 ui <- fluidPage(
   titlePanel("Payments"),
+  DT::dataTableOutput("mytable"),
   sidebarLayout(
     sidebarPanel(
       dateRangeInput("Dateinput", "Date", start = 2017, end = 2018, min = min(Total_assets$Date),
                      max = max(Total_assets$Date), format = "yyyy-mm-dd", startview = "month"),
-      radioButtons("SubjectInput", "Subject type",
+      radioButtons("typeInput", "Product type",
                    choices = c(unique(Total_assets$subject)),
                    selected = ),
       selectInput("costInput", "Expenditures",
                   choices = c(unique(Total_assets$payment)))
     ),
-    mainPanel(
-      plotOutput("coolplot"),
-      br(), br(),
-      tableOutput("results")
+    mainPanel("the results will go here")
   )
 )
 
-server <- function(input, output) {}
+server <- function(input, output) {
+  output$mytable = DT::renderDataTable({
+    Total_assets})
+}
 shinyApp(ui = ui, server = server)
+
