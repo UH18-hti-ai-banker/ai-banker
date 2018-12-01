@@ -1,13 +1,13 @@
 
 #NOTE: To be run only once (stratup) in the app! (slow as fetches everything)
-#DEPENDS ON: opapi.R
+#DEPENDS ON: api.R
 #EXAMPLE: taulu
 
 #Returns a table of funds, including their risk class and expected returns
 fetchFunds <- function() {
 
-  api_info <- OPAPI_info()
-  api <- OPAPI()
+  api_info <- API_OP_FUNDS_INFO()
+  api <- API_OP_FUNDS()
 
   ################
   ### Hinnasto ###
