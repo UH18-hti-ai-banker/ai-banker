@@ -16,6 +16,7 @@ ui <- {
              tabPanel("Costs", costPlotUI("costs")),
              tabPanel("Payments", OPpaymentUI("oppayment", Total_assets)),
              tabPanel("Funds", fundsTableUI("funds")),
+             tabPanel("Questions", questionsUI("questions")),
              windowTitle = "AI-Banker")
 }
 
@@ -26,6 +27,7 @@ server <- function(input, output, session) {
   output$oppayment <- callModule(OPpayment, "oppayment", Total_assets)
   funds <- getFunds(api)
   output$funds <- callModule(fundsTable, "funds", funds)
+  callModule(questions, "questions")
 
 }
 
