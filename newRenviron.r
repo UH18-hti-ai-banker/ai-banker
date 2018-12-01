@@ -17,4 +17,3 @@ if(!file.exists(user_renviron)) {
   file.create(user_renviron)
 } # check to see if the file already exists
 writeLines(c(paste0("OP_API_KEY=", key), paste0("OP_API_TOKEN=", token)), con = ".Renviron")
-testline13
