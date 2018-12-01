@@ -11,6 +11,13 @@ OPAPI <- function() {
   new("OPAPI", url=api_url, key=api_key, token=api_token)
 }
 
+OPAPI_info <- function() {
+  api_url <- "https://sandbox.apis.op-palvelut.fi/funds/info/v1"
+  api_key <- Sys.getenv("OP_API_KEY")
+  api_token <- "b6910384440ce06f495976f96a162e2ab1bafbb4"
+  new("OPAPI", url=api_url, key=api_key, token=api_token)
+}
+
 setMethod("show", "OPAPI", function(object) {
   cat("URL:", object@url)
 })
