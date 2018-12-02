@@ -1,3 +1,4 @@
+library("RColorBrewer")
 
 getTotal_assets <- function() {
   op_sheet <- read_excel("data/OPpayments.xlsx")
@@ -18,11 +19,17 @@ getCostsPlot <- function() {
 
 getWealthPlot <- function() {
   Wealth <- read_excel("data/OPpayments.xlsx", sheet = "Varallisuus")
-  a<- Wealth[which(Wealth$Type == "Asset"),]
-  l<-Wealth[which(Wealth$Type == "Liability"),]
+  Wealth[which(Wealth$Type == "Asset"), "Type"] <- "Varat"
+  Wealth[which(Wealth$Type == "Liability"), "Type"] <- "Velat"
+  a<- Wealth[which(Wealth$Type == "Varat"),]
+  l<-Wealth[which(Wealth$Type == "Velat"),]
   savings <- sum(as.numeric(a$Value))-sum(as.numeric(l$Value))
-  Wealth[nrow(Wealth) + 1,] = list("Savings",savings,"Savings",0)
+  Wealth[nrow(Wealth) + 1,] = list("Säästöt",savings,"Säästöt",0)
   ggplot(Wealth , aes(x=Type,y=Value, fill=Name)) +
     geom_bar(stat = "identity") +
-    theme_minimal()
+    theme_minimal() +
+    theme(axis.text.y = element_text(angle=45, size = 9, vjust = 1, hjust = 1)) +
+    xlab("") +
+    ylab("€") +
+    scale_fill_brewer(palette="RdBu")
 }

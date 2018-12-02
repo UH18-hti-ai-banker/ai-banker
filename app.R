@@ -21,11 +21,11 @@ source("modules/hockeystick.R")
 # Define UI for app
 ui <- {
   navbarPage(img(src="AIBanker_logo.jpeg", height="100%"),
-             tabPanel("Costs", costPlotUI("costs")),
+             tabPanel("Overview", costPlotUI("costs")),
              tabPanel("Payments", paymentsUI("payments")),
              tabPanel("Funds", fundsTableUI("funds")),
              tabPanel("Questions", questionsUI("questions")),
-             tabPanel("Hockey stick", hockeyStickUI("hockeystick")),
+             tabPanel("Savings", hockeyStickUI("hockeystick")),
              windowTitle = "AI-Banker")
 }
 
