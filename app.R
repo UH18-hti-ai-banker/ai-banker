@@ -16,7 +16,7 @@ source("modules/costplot.R")
 source("modules/funds.R")
 source("modules/payments.R")
 source("modules/questions.R")
-source("modules/hockeyStick.R")
+source("modules/hockeystick.R")
 
 # Define UI for app
 ui <- {
