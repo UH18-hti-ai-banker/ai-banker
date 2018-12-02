@@ -4,6 +4,7 @@ fundsTableUI <- function(id) {
   dataTableOutput(ns("table"))
 }
 
-fundsTable <- function(input, output, session, data) {
-  output$table <- renderDataTable(data)
+fundsTable <- function(input, output, session, api) {
+  funds <- GET(api, "funds")
+  output$table <- renderDataTable(funds)
 }

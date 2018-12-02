@@ -1,6 +1,8 @@
 
-OPpaymentUI<-function(id, data) {
+paymentsUI<-function(id) {
   ns <- NS(id)
+
+  data <- getTotal_assets()
 
   div(fluidRow(column(3,
                           selectInput(ns("bank"),
@@ -22,7 +24,8 @@ OPpaymentUI<-function(id, data) {
   )
 }
 
-OPpayment <- function(input, output, session, data) {
+payments <- function(input, output, session) {
+  data <- getTotal_assets()
   output$table <- renderDataTable({
     filtered <- data
     if (input$bank != "All") {

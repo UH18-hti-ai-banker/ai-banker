@@ -1,5 +1,3 @@
-library("plotly")
-
 costPlotUI <- function(id) {
   ns <- NS(id)
   div(
@@ -10,9 +8,9 @@ costPlotUI <- function(id) {
 
 costPlot <- function(input, output, session) {
   output$costs <- renderPlotly({
-    CostsPlot
+    getCostsPlot()
   })
   output$wealth <- renderPlotly({
-    WealthPlot
+    getWealthPlot()
   })
 }
