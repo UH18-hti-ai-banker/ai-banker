@@ -11,10 +11,12 @@ library(pdftools)
 # Source included libraries
 source("R/api.R")
 source("R/OPpayment.R")
+source("R/hockeyStick.R")
 source("modules/costplot.R")
 source("modules/funds.R")
 source("modules/payments.R")
 source("modules/questions.R")
+source("modules/hockeyStick.R")
 
 # Initialize API
 api_op_funds <- API_OP_FUNDS()
@@ -26,6 +28,7 @@ ui <- {
              tabPanel("Payments", paymentsUI("payments")),
              tabPanel("Funds", fundsTableUI("funds")),
              tabPanel("Questions", questionsUI("questions")),
+             tabPanel("Hockey stick", hockeyStickUI("hockeystick")),
              windowTitle = "AI-Banker")
 }
 
@@ -36,6 +39,7 @@ server <- function(input, output, session) {
   output$oppayment <- callModule(payments, "payments")
   output$funds <- callModule(fundsTable, "funds", api_op_funds)
   callModule(questions, "questions")
+  output$hockeystick <- callModule(hockeyStickS, "hockeystick")
 
 }
 
