@@ -122,10 +122,3 @@ fetchFunds <- function() {
 
   funds
 }
-
-
-
-
-
-
-

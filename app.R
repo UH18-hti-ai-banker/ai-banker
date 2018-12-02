@@ -7,6 +7,7 @@ library(plyr)
 library(ggplot2)
 library(dplyr)
 library(pdftools)
+library(RColorBrewer)
 
 # Source included libraries
 source("R/api.R")

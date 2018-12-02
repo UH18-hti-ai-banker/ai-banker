@@ -1,5 +1,3 @@
-library("RColorBrewer")
-
 getTotal_assets <- function() {
   op_sheet <- read_excel("data/OPpayments.xlsx")
   nordea_sheet <- read_excel("data/OPpayments.xlsx", sheet = 2)
