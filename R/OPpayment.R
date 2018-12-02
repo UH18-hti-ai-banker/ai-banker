@@ -9,8 +9,8 @@ getTotal_assets <- function() {
 
 getCostsPlot <- function() {
   total = getTotal_assets()
-  Costs <- total[which(total$payment == "Cost"),]
-  ggplot(Costs, aes(x = Date, y = sum)) +
+  Expenditure <- total[which(total$payment == "Expenditure"),]
+  ggplot(Expenditure, aes(x = Date, y = sum)) +
     geom_line(aes(color = payment), size = 1) +
     scale_color_manual(values = c("red")) +
     theme_minimal()
