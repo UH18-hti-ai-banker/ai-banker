@@ -9,12 +9,12 @@ hockeyStickUI <- function(id) {
   }
 
   fluidPage(
-    titlePanel("Profiiiiit!"),
+    titlePanel("Ennuste"),
     fluidRow(
       column(3,
              wellPanel(
-               h4("Filter"),
-               sliderInput(ns("xtra"), "Kuinka paljon investoitavissa?",
+               h4(""),
+               sliderInput(ns("xtra"), "Säästöt Kuukaudessa",
                            0, 1200, 200, step = 10)#,
              )
       ),
@@ -48,11 +48,13 @@ hockeyStickS <- function(input, output, session) {
 
       ggplot(data = series) +
         geom_line(aes(as.Date(Date), Invest, col = 3)) +
-        geom_line(aes(as.Date(Date), Keep), col = 2) +
-        xlab("Päivämäärä") +
-        ylab("Tuotot (€)") +
-        ylim(c(0,200000))
+        #geom_line(aes(as.Date(Date), Keep), col = 2) +
+        xlab("") +
+        ylab("€") +
+        ylim(c(0,200000)) +
+        theme(axis.text.y = element_text(angle=45, size = 9, vjust = 1, hjust = 1)) +
+        theme(legend.position = "none")
 
-    }) #, height=700
+    })
 
 }

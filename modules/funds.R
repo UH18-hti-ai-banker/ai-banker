@@ -5,6 +5,7 @@ fundsTableUI <- function(id) {
 }
 
 fundsTable <- function(input, output, session, api) {
-  funds <- GET(api, "funds")
+  #funds <- GET(api, "funds")
+  funds <- readRDS("fundsNew.rds")
   output$table <- renderDataTable(funds)
 }
