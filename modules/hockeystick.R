@@ -19,7 +19,7 @@ hockeyStickUI <- function(id) {
              )
       ),
       column(9,
-             plotOutput(ns("plot"))
+             plotlyOutput(ns("plot"))
       )
     )
   )
@@ -39,7 +39,7 @@ hockeyStickS <- function(input, output, session) {
   specs <- list(values, interests, flows)
   names(specs) <- c("Alku", "Korko", "Virrat")
 
-  output$plot <- renderPlot({
+  output$plot <- renderPlotly({
 
       expenditure <- specs$Virrat["Palkka"] - specs$Virrat["Lainalyhennys"] - input$xtra
       specs$Virrat["Menot"] <- expenditure

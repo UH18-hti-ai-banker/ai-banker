@@ -18,9 +18,6 @@ source("modules/payments.R")
 source("modules/questions.R")
 source("modules/hockeyStick.R")
 
-# Initialize API
-api_op_funds <- API_OP_FUNDS()
-
 # Define UI for app
 ui <- {
   navbarPage(img(src="AIBanker_logo.jpeg", height="100%"),
@@ -34,6 +31,9 @@ ui <- {
 
 # Define server logic
 server <- function(input, output, session) {
+
+  # Initialize personal API
+  api_op_funds <- API_OP_FUNDS()
 
   output$costs <- callModule(costPlot, "costs")
   output$oppayment <- callModule(payments, "payments")
