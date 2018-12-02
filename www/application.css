@@ -9,3 +9,16 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.navbar {
+  background: rgb(23,56,62);
+}
+
+.navbar .active a {
+  background: none !important;
+  color: orange !important;
+}
+
+.navbar a:hover {
+  color: white !important;
+}
