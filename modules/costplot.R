@@ -7,9 +7,9 @@ costPlotUI <- function(id) {
 }
 
 costPlot <- function(input, output, session) {
-  output$costs <- renderPlotly({
-    getCostsPlot()
-  })
+  #output$costs <- renderPlotly({
+  #  getCostsPlot()
+  #})
   output$wealth <- renderPlotly({
     getWealthPlot()
   })
