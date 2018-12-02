@@ -26,6 +26,7 @@ ui <- {
              tabPanel("Funds", fundsTableUI("funds")),
              tabPanel("Questions", questionsUI("questions")),
              tabPanel("Savings", hockeyStickUI("hockeystick")),
+             theme = "application.css",
              windowTitle = "AI-Banker")
 }
 
